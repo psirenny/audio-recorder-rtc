@@ -3,9 +3,6 @@
   "bugs": {
     "url": "https://github.com/psirenny/audio-recorder-rtc/issues"
   },
-  "dependencies": {
-    "lodash": "*"
-  },
   "description": "WebRTC audio recorder plugin.",
   "keywords": [
     "audio",

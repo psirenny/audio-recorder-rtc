@@ -8,17 +8,17 @@ module.exports = function () {
       var self = this;
       navigator.getUserMedia({audio: true},
         function (mediaStream) {
-          self.rtc = RecordRTC(mediaStream);
+          self.rec = RecordRTC(mediaStream);
           callback();
         }
       );
     },
     start: function (callback) {
-      this.rtc.startRecording();
+      this.rec.startRecording();
       callback();
     },
     stop: function (callback) {
-      this.rtc.stopRecording(function (audioUrl) {
+      this.rec.stopRecording(function (audioUrl) {
         callback(audioUrl);
       });
     }
