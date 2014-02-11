@@ -2,7 +2,7 @@ module.exports = function () {
   return {
     available: function (callback) {
       if (typeof navigator === 'undefined') return callback(false);
-      return callback(!!(navigator || {}).getUserMedia);
+      return callback(!!navigator.getUserMedia);
     },
     permission: function (callback) {
       var self = this;
