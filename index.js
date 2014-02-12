@@ -19,7 +19,7 @@ module.exports = function () {
     },
     stop: function (callback) {
       this.rec.stopRecording(function (audioUrl) {
-        callback(audioUrl);
+        callback(null, audioUrl);
       });
     }
   };
