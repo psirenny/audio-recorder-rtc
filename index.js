@@ -13,6 +13,9 @@ module.exports = function () {
         }
       );
     },
+    send: function (url, callback) {
+      callback();
+    },
     start: function (callback) {
       this.rec.startRecording();
       callback();
