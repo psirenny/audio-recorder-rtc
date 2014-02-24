@@ -6,6 +6,7 @@ module.exports = function () {
     },
     permission: function (callback) {
       var self = this;
+      if (this.rec) return callback();
       navigator.getUserMedia({audio: true},
         function (mediaStream) {
           self.rec = RecordRTC(mediaStream);
