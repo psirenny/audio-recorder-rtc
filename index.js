@@ -4,6 +4,7 @@ module.exports = function () {
       if (typeof navigator === 'undefined') return callback(false);
       return callback(!!navigator.getUserMedia);
     },
+    name: 'rtc',
     permission: function (callback) {
       var self = this;
       if (this.rec) return callback();
