@@ -26,7 +26,8 @@ module.exports = function () {
       req.open('POST', url, true);
       req.onload = function (e) {
         var res = JSON.parse(e.target.response);
-        callback(null, res);
+        var success = e.target.status === 200;
+        callback(success ? null : res, res);
       };
       req.send(data);
     },
