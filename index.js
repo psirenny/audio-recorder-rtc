@@ -12,11 +12,14 @@ module.exports = function () {
     permission: function (callback) {
       var self = this;
       if (this.rec) return callback();
-      navigator.getUserMedia({audio: true},
-        function (mediaStream) {
-          self.rec = RecordRTC(mediaStream);
-          callback();
-        }
+
+      function success(mediaStream) {
+        self.rec = RecordRTC(mediaStream);
+        callback();
+      }
+
+      navigator.getUserMedia(
+        {audio: true}, success, callback
       );
     },
     send: function (url, callback) {
