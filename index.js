@@ -1,4 +1,6 @@
-function Strategy () {}
+'use strict';
+
+function Strategy() {}
 
 Strategy.prototype.available = function (callback) {
   if (typeof navigator === 'undefined') return callback(null, false);
@@ -23,7 +25,7 @@ Strategy.prototype.permission = function (callback) {
   }
 
   function success(mediaStream) {
-    self.data.rec = RecordRTC(mediaStream);
+    self.data.mediaStream = mediaStream;
     callback(null, true);
   }
 
@@ -35,6 +37,7 @@ Strategy.prototype.permission = function (callback) {
 };
 
 Strategy.prototype.start = function (callback) {
+  this.data.rec = RecordRTC(this.data.mediaStream);
   this.data.rec.startRecording();
   callback(null);
 };
