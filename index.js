@@ -33,7 +33,16 @@ Strategy.prototype.permission = function (callback) {
     callback(null, false);
   }
 
-  navigator.getUserMedia({audio: true}, success, failure);
+  var options = {
+    optional: [
+      {googAutoGainControl: false},
+      {googEchoCancellation: false},
+      {googHighpassFilter: false},
+      {googNoiseSuppression: false}
+    ]
+  };
+
+  navigator.getUserMedia({audio: options}, success, failure);
 };
 
 Strategy.prototype.start = function (callback) {
