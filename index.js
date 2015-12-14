@@ -46,7 +46,7 @@ Strategy.prototype.permission = function (callback) {
 };
 
 Strategy.prototype.start = function (callback) {
-  this.data.rec = RecordRTC(this.data.mediaStream);
+  this.data.rec = RecordRTC(this.data.mediaStream, {});
   this.data.rec.startRecording();
   callback(null);
 };
