@@ -1,5 +1,7 @@
 'use strict';
 
+/* global RecordRTC */
+
 function Strategy() {}
 
 Strategy.prototype.available = function (callback) {
