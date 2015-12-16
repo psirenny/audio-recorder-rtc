@@ -41,14 +41,15 @@ Strategy.prototype.permission = function (callback) {
       {googEchoCancellation: false},
       {googHighpassFilter: false},
       {googNoiseSuppression: false}
-    ]
+    ],
+    mandatory: []
   };
 
   navigator.getUserMedia({audio: options}, success, failure);
 };
 
 Strategy.prototype.start = function (callback) {
-  this.data.rec = RecordRTC(this.data.mediaStream, {});
+  this.data.rec = RecordRTC(this.data.mediaStream, {bufferSize: 16384, numberOfAudioChannels: 1});
   this.data.rec.startRecording();
   callback(null);
 };
