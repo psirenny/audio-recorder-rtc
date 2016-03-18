@@ -1,6 +1,8 @@
 'use strict';
 
-/* global RecordRTC */
+if (process.browser) {
+  var RecordRTC = require('recordrtc');
+}
 
 function Strategy() {}
 
@@ -35,21 +37,12 @@ Strategy.prototype.permission = function (callback) {
     callback(null, false);
   }
 
-  var options = {
-    optional: [
-      {googAutoGainControl: false},
-      {googEchoCancellation: false},
-      {googHighpassFilter: false},
-      {googNoiseSuppression: false}
-    ],
-    mandatory: []
-  };
-
-  navigator.getUserMedia({audio: options}, success, failure);
+  navigator.getUserMedia({audio: true}, success, failure);
 };
 
 Strategy.prototype.start = function (callback) {
-  this.data.rec = RecordRTC(this.data.mediaStream, {bufferSize: 16384, numberOfAudioChannels: 1});
+  var opts = {disableLogs: true, numberOfAudioChannels: 1, type: 'audio'};
+  this.data.rec = RecordRTC(this.data.mediaStream, opts);
   this.data.rec.startRecording();
   callback(null);
 };
